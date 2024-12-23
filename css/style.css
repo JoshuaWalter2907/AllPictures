@@ -1,0 +1,129 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Cooper Black", sans-serif;
+}
+
+h1{
+  color: white;
+  text-align: center;
+}
+
+/* Grundlegendes Styling für den Ordner-Link */
+.folder-link {
+  display: flex;             /* Flexbox verwenden, um Icon und Text nebeneinander zu platzieren */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;       /* Vertikale Ausrichtung der Elemente in der Mitte */
+  padding: 10px;             /* Etwas Abstand um den Link */
+  text-decoration: none;     /* Entfernt die Unterstreichung des Links */
+  color: white;              /* Textfarbe */
+  margin: 10px 0;            /* Abstand zwischen den Links */
+  font-size: 18px;           /* Schriftgröße */
+}
+
+/* Styling für das Folder-Icon */
+.folder-link i {
+  margin-right: 10px;        /* Abstand zwischen dem Icon und dem Text */
+  font-size: 48px;           /* Größe des Icons */
+  color: #aaa;            /* Farbe des Icons */
+}
+
+.back-btn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  margin: 10px 0;
+  font-size: 18px;
+  width: 200px;
+  height: fit-content;
+}
+
+/* Styling für das vertikale Ellipsis */
+.vertical-ellipsis {
+  display: flex;
+  flex-direction: column; /* Punkte vertikal anordnen */
+  justify-content: center;
+  align-items: center;
+  width: 30px; /* Breite der Ellipsis */
+  height: 70px; /* Höhe des Containers */
+}
+
+/* Styling für die Punkte */
+.dot {
+  width: 10px; /* Durchmesser der Punkte */
+  height: 10px; /* Durchmesser der Punkte */
+  border-radius: 50%; /* Rundes Aussehen */
+  background-color: white; /* Farbe der Punkte */
+  margin: 5px 0; /* Abstand zwischen den Punkten */
+}
+
+
+#image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Abstand zwischen den Bildern */
+}
+
+/* Quadratische Bild-Wrapper */
+#image-container .image-wrapper {
+  width: 300px; /* Quadratische Breite */
+  height: 150px; /* Quadratische Höhe */
+  overflow: hidden; /* Überstehendes Bild abschneiden */
+  position: relative;
+}
+
+/* Bilder anpassen */
+#image-container .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Bild zuschneiden und anpassen */
+  cursor: pointer; /* Zeiger ändern bei Mouseover */
+}
+
+/* Modal-Design */
+.modal {
+  display: none; /* Unsichtbar, bis es geöffnet wird */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Halbdurchsichtiger Hintergrund */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bild im Modal */
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 10px #fff;
+  border: 2px solid #fff;
+}
+
+/* Schließen-Button */
+.modal #close-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}

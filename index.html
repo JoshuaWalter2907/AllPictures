@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Folders</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+<h1>Image Gallery</h1>
+<div id="folder-list" class="folder-list"></div>
+
+<h1> More to come</h1>
+<div class="vertical-ellipsis">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+
+<script>
+  const folderList = document.getElementById("folder-list");
+
+  // Lade die Ordnernamen aus folders.json
+  fetch('folders.json')
+    .then(response => response.json())
+    .then(folders => {
+      folders.forEach(folder => {
+        const link = document.createElement("a");
+        link.href = `gallery.html?folder=${folder}`;
+        link.className = "folder-link";
+
+        // Ordnersymbol und Text
+        const icon = document.createElement("i");
+        icon.className = "fa fa-folder"; // Das Ordnersymbol
+
+        const text = document.createElement("span");
+        text.textContent = folder.charAt(0).toUpperCase() + folder.slice(1); // Foldername mit Großbuchstabe am Anfang
+
+        // Icon und Text zu einem Link hinzufügen
+        link.appendChild(icon);
+        link.appendChild(text);
+
+        // Link zu Liste hinzufügen
+        folderList.appendChild(link);
+      });
+    })
+    .catch(error => console.error("Error loading folders:", error));
+</script>
+</body>
+</html>

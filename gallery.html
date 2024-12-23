@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button id="back-button" onclick="goBack()" class="back-btn">Back</button>
+
+<h1 id="folder-name">Gallery</h1>
+<div id="image-container"></div>
+
+<!-- Modal für das Popup-Bild -->
+<div id="image-modal" class="modal">
+  <span id="close-modal">&times;</span>
+  <img id="modal-image" alt="Popup Image">
+</div>
+
+<script>
+  function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  const folder = getQueryParameter('folder');
+  const folderNameElement = document.getElementById("folder-name");
+  const imageContainer = document.getElementById("image-container");
+
+  const modal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  const closeModal = document.getElementById("close-modal");
+
+  folderNameElement.textContent = folder.charAt(0).toUpperCase() + folder.slice(1);
+
+  fetch(`${folder}/images.json`)
+          .then(response => response.json())
+          .then(images => {
+            images.forEach(imageName => {
+              const wrapper = document.createElement("div");
+              wrapper.className = "image-wrapper";
+
+              const img = document.createElement("img");
+              img.src = `${folder}/${imageName}`;
+              img.alt = imageName;
+
+              img.addEventListener("click", () => {
+                modalImage.src = img.src;
+                modal.style.display = "flex";
+              });
+
+              wrapper.appendChild(img);
+              imageContainer.appendChild(wrapper);
+            });
+          })
+          .catch(error => console.error("Error loading images:", error));
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  function goBack() {
+    window.history.back();  // Geht zur vorherigen Seite im Verlauf zurück
+  }
+</script>
+</body>
+</html>
